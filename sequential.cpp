@@ -10,12 +10,13 @@
 #include <chrono>
 #include <vector>
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv)
+{
     // ---- Parse arguments ----
     SimParams params = parseArgs(argc, argv);
-    int N           = params.N;
-    double dt       = params.dt;
-    int iterations  = params.iterations;
+    int N = params.N;
+    double dt = params.dt;
+    int iterations = params.iterations;
     int output_freq = params.output_freq;
 
     std::cout << "=== Sequential N-Body Simulation ===\n";
@@ -29,7 +30,8 @@ int main(int argc, char** argv) {
 
     // Write initial state
     std::string csvFile = "output_sequential.csv";
-    if (output_freq > 0) {
+    if (output_freq > 0)
+    {
         writeCSV(particles, 0, csvFile);
     }
 
@@ -39,25 +41,30 @@ int main(int argc, char** argv) {
     // ---- Simulation loop ----
     auto start = std::chrono::high_resolution_clock::now();
 
-    for (int iter = 1; iter <= iterations; iter++) {
+    for (int iter = 1; iter <= iterations; iter++)
+    {
 
         // Reset forces
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < N; i++)
+        {
             fx[i] = 0.0;
             fy[i] = 0.0;
         }
 
         // Compute pairwise gravitational forces
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                if (i == j) continue;
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                if (i == j)
+                    continue;
 
                 double dx = particles[j].x - particles[i].x;
                 double dy = particles[j].y - particles[i].y;
 
                 // Distance with softening to prevent singularity
                 double distSq = dx * dx + dy * dy + SOFTENING * SOFTENING;
-                double dist   = std::sqrt(distSq);
+                double dist = std::sqrt(distSq);
                 double invDist3 = 1.0 / (distSq * dist);
 
                 // Gravitational force magnitude along each axis
@@ -68,7 +75,8 @@ int main(int argc, char** argv) {
         }
 
         // Update velocities and positions (Euler integration)
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < N; i++)
+        {
             double ax = fx[i] / particles[i].mass;
             double ay = fy[i] / particles[i].mass;
 
@@ -80,7 +88,8 @@ int main(int argc, char** argv) {
         }
 
         // Optionally write CSV output
-        if (output_freq > 0 && iter % output_freq == 0) {
+        if (output_freq > 0 && iter % output_freq == 0)
+        {
             writeCSV(particles, iter, csvFile);
         }
     }
