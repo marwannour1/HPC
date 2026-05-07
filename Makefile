@@ -13,7 +13,7 @@ CXX      = g++
 MPICXX   = mpicxx
 CXXFLAGS = -O2 -std=c++17 -Wall
 
-all: sequential openmp mpi
+all: sequential openmp mpi hybrid
 
 sequential: sequential.cpp common.h
 	$(CXX) $(CXXFLAGS) -o sequential sequential.cpp -lm
@@ -24,7 +24,10 @@ openmp: openmp.cpp common.h
 mpi: mpi.cpp common.h
 	$(MPICXX) $(CXXFLAGS) -o mpi mpi.cpp -lm
 
+hybrid: hybrid.cpp common.h
+	$(MPICXX) $(CXXFLAGS) -fopenmp -o hybrid hybrid.cpp -lm
+
 clean:
-	rm -f sequential openmp mpi *.csv
+	rm -f sequential openmp mpi hybrid *.csv
 
 .PHONY: all clean

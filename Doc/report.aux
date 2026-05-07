@@ -1,0 +1,55 @@
+\relax 
+\providecommand\zref@newlabel[2]{}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{4}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Background and Motivation}{4}{subsection.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Physics of Gravitational Interaction}{4}{subsection.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Numerical Integration}{6}{subsection.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Parallel Computing Fundamentals}{6}{subsection.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Objectives}{8}{subsection.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Implementation Details}{8}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Project Structure}{8}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Data Structures}{8}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Sequential Version}{9}{subsection.2.3}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Sequential N-Body Simulation}}{10}{algorithm.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}OpenMP Version}{11}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}MPI Version}{13}{subsection.2.5}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces MPI N-Body Timestep (Newton's 3rd Law + Allreduce)}}{14}{algorithm.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Hybrid (MPI + OpenMP) Version}{15}{subsection.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{16}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Experimental Setup}{16}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Wall-Clock Time}{17}{subsection.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Wall-clock time (seconds) for all configurations and particle counts.}}{18}{table.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:walltime}{{1}{18}{Wall-clock time (seconds) for all configurations and particle counts}{table.caption.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Speedup Analysis}{18}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Speedup $S = T_{\text  {seq}} / T_{\text  {parallel}}$. Values $<1$ indicate the parallel version is slower than sequential.}}{18}{table.caption.2}\protected@file@percent }
+\newlabel{tab:speedup}{{2}{18}{Speedup $S = T_{\text {seq}} / T_{\text {parallel}}$. Values $<1$ indicate the parallel version is slower than sequential}{table.caption.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Parallel Efficiency}{19}{subsection.3.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Parallel efficiency $E = S/W$ (\%). Hybrid columns use $W=8$ workers. Values above 80\% are highlighted in \textbf  {bold}.}}{19}{table.caption.3}\protected@file@percent }
+\newlabel{tab:efficiency}{{3}{19}{Parallel efficiency $E = S/W$ (\%). Hybrid columns use $W=8$ workers. Values above 80\% are highlighted in \textbf {bold}}{table.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Total Computation (Pairs Per Second)}{19}{subsection.3.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Pairs per second ($\times 10^6$) for sequential baseline and best parallel configuration at each $N$.}}{19}{table.caption.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Figures}{20}{subsection.3.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Wall-clock time vs.\ particle count $N$ on a log--log scale. All implementations exhibit $\mathcal  {O}(N^2)$ scaling; parallel versions separate from sequential above $N \approx 400$.}}{20}{figure.caption.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces OpenMP speedup vs.\ $N$ for 2, 4, and 8 threads. Speedup improves with $N$ as computation outweighs reduction merge overhead.}}{20}{figure.caption.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces MPI speedup vs.\ $N$ for 2 and 4 processes. The near-flat curves confirm that communication overhead does not amortise with increasing $N$.}}{21}{figure.caption.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Hybrid speedup vs.\ $N$. Fewer MPI processes with more OpenMP threads ($2P{\times }4T$) consistently outperforms the reverse configuration ($4P{\times }2T$).}}{21}{figure.caption.8}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Parallel efficiency vs.\ $N$ for 8-worker configurations. OpenMP sustains the highest efficiency; Hybrid improves with $N$ but plateaus below OpenMP.}}{22}{figure.caption.9}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Wall-clock time at $N=100$ demonstrating the overhead-dominated regime. Most parallel configurations are slower than sequential because $\mathcal  {O}(N^2)$ computation (4{,}950 pairs) takes less time than parallel startup costs; MPI 4P is only a marginal exception in this benchmark run.}}{22}{figure.caption.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{23}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}OpenMP Scalability}{23}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}MPI Communication Overhead}{24}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Hybrid: Two-Level Parallelism Trade-off}{25}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Overhead-Dominated Regime ($N=100$)}{26}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Load Balancing in Detail}{27}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Comparison with Theoretical Limits}{28}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Debugging Strategies and Common Pitfalls}{29}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{30}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Summary of Findings}{30}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Limitations of This Study}{31}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Future Work}{32}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Closing Remarks}{33}{subsection.5.4}\protected@file@percent }
+\gdef \@abspage@last{33}

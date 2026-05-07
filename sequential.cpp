@@ -51,14 +51,13 @@ int main(int argc, char **argv)
             fy[i] = 0.0;
         }
 
-        // Compute pairwise gravitational forces
-        for (int i = 0; i < N; i++)
+        // Compute pairwise gravitational forces using Newton's 3rd law.
+        // Only pairs (i, j) with j > i are evaluated — the force on j
+        // is equal and opposite to the force on i, halving the work.
+        for (int i = 0; i < N - 1; i++)
         {
-            for (int j = 0; j < N; j++)
+            for (int j = i + 1; j < N; j++)
             {
-                if (i == j)
-                    continue;
-
                 double dx = particles[j].x - particles[i].x;
                 double dy = particles[j].y - particles[i].y;
 
@@ -69,8 +68,13 @@ int main(int argc, char **argv)
 
                 // Gravitational force magnitude along each axis
                 double F = G * particles[i].mass * particles[j].mass * invDist3;
-                fx[i] += F * dx;
-                fy[i] += F * dy;
+                double f_x = F * dx;
+                double f_y = F * dy;
+
+                fx[i] += f_x;
+                fy[i] += f_y;
+                fx[j] -= f_x;   // Newton's 3rd law: equal and opposite
+                fy[j] -= f_y;
             }
         }
 
@@ -100,8 +104,9 @@ int main(int argc, char **argv)
     // ---- Results ----
     std::cout << "Simulation complete.\n";
     std::cout << "Wall-clock time : " << elapsed.count() << " seconds\n";
-    std::cout << "Interactions/sec: "
-              << (double)N * N * iterations / elapsed.count() << "\n";
+    std::cout << "Pairs/sec       : "
+              << (double)N * (N - 1) / 2.0 * iterations / elapsed.count() << "\n";
+    std::cout << "(Newton 3rd law: ~50% fewer force evals than naive)\n";
 
     return 0;
 }
